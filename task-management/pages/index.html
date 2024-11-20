@@ -1,0 +1,228 @@
+<!-- /pages/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../assets/css/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        body {
+            background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+            background-size: 400% 400%;
+            animation: gradient 15s ease infinite;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+            margin: 0;
+        }
+
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .container {
+            max-width: 350px;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transform: translateY(20px);
+            opacity: 0;
+            animation: slideUp 0.5s ease forwards;
+        }
+
+        @keyframes slideUp {
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        h2 {
+            color: #2d3748;
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+            text-align: center;
+            position: relative;
+        }
+
+        h2:after {
+            content: '';
+            display: block;
+            width: 50px;
+            height: 3px;
+            background: linear-gradient(to right, #ee7752, #e73c7e);
+            margin: 0.5rem auto;
+            animation: width 0.5s ease;
+        }
+
+        @keyframes width {
+            from { width: 0; }
+            to { width: 50px; }
+        }
+
+        .input-group {
+            position: relative;
+            margin-bottom: 1.2rem;
+        }
+
+        .input-group i {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #a0aec0;
+            transition: all 0.3s ease;
+            z-index: 1;
+        }
+
+        .form-control {
+            border: 2px solid transparent;
+            border-radius: 12px;
+            padding: 1rem 1rem 1rem 2.8rem;
+            font-size: 0.95rem;
+            background: rgba(255, 255, 255, 0.9);
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            height: 3.2rem;
+        }
+
+        .form-control:focus {
+            border-color: #23a6d5;
+            box-shadow: 0 5px 15px rgba(35, 166, 213, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .form-control:focus + i {
+            color: #23a6d5;
+        }
+
+        .form-control::placeholder {
+            color: #a0aec0;
+            opacity: 0.8;
+            transition: all 0.3s ease;
+        }
+
+        .form-control:focus::placeholder {
+            opacity: 0.5;
+            transform: translateX(5px);
+        }
+
+        .btn-primary {
+            background: linear-gradient(45deg, #ee7752, #e73c7e);
+            border: none;
+            border-radius: 12px;
+            padding: 0.8rem;
+            font-size: 1rem;
+            font-weight: 600;
+            width: 100%;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(231, 60, 126, 0.4);
+        }
+
+        .btn-primary::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: 0.5s;
+        }
+
+        .btn-primary:hover::after {
+            left: 100%;
+        }
+
+        p {
+            font-size: 0.9rem;
+            color: #4a5568;
+            text-align: center;
+            margin-top: 1.5rem;
+        }
+
+        a {
+            color: #23a6d5;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -2px;
+            left: 0;
+            background: linear-gradient(to right, #23a6d5, #23d5ab);
+            transition: width 0.3s ease;
+        }
+
+        a:hover::after {
+            width: 100%;
+        }
+
+        /* Responsive design */
+        @media (max-width: 576px) {
+            .container {
+                margin: 1rem;
+                padding: 1.5rem;
+            }
+        }
+
+        /* Add a subtle hover effect */
+        .input-group:hover .form-control {
+            background: rgba(255, 255, 255, 1);
+        }
+
+        .input-group:hover i {
+            color: #23a6d5;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2 class="text-center">Login</h2>
+        <form id="loginForm">
+            <div class="input-group">
+                <input type="email" class="form-control" id="email" placeholder="Email" required>
+                <i class="fas fa-envelope"></i>
+            </div>
+            <div class="input-group">
+                <input type="password" class="form-control" id="password" placeholder="Password" required>
+                <i class="fas fa-lock"></i>
+            </div>
+            <button type="submit" class="btn btn-primary">
+                <i class="fas fa-sign-in-alt me-2"></i> Login
+            </button>
+        </form>
+        <p>
+            <i class="fas fa-user-plus me-2"></i>
+            Don't have an account? <a href="register.html">Register here</a>
+        </p>
+    </div>
+
+    <script src="../assets/js/app.js"></script>
+</body>
+</html>
